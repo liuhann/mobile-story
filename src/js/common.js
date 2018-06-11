@@ -243,4 +243,4 @@ const commonMixins =  {
     }
 };
 
-module.exports = commonMixins;
+export default commonMixins

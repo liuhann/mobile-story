@@ -1,5 +1,5 @@
 import AppDao from './dao/app-dao';
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.esm'
 import VueRouter from 'vue-router'
 
 import './fontello/css/fontello.css';
@@ -125,6 +125,7 @@ function startVue() {
 
     const now = new Date().getTime();
     appDao.listHome().then((response)=> {
+        debugger;
         const homeData = response;
         app = new Vue({
             el: '#app',

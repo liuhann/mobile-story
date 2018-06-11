@@ -1,5 +1,4 @@
 /*! iScroll v5.2.0-snapshot ~ (c) 2008-2017 Matteo Spinelli ~ http://cubiq.org/license */
-(function (window, document, Math) {
 var rAF = window.requestAnimationFrame	||
 	window.webkitRequestAnimationFrame	||
 	window.mozRequestAnimationFrame		||
@@ -2159,12 +2158,4 @@ Indicator.prototype = {
 
 IScroll.utils = utils;
 
-if ( typeof module != 'undefined' && module.exports ) {
-	module.exports = IScroll;
-} else if ( typeof define == 'function' && define.amd ) {
-        define( function () { return IScroll; } );
-} else {
-	window.IScroll = IScroll;
-}
-
-})(window, document, Math);
+export default IScroll;
