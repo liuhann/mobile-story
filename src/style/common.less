@@ -1,0 +1,128 @@
+@import "variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  width: 100%;
+  display: block;
+  line-height: 6vw;
+  text-align: center;
+  padding: 3vw 0;
+  border-radius: 5px;
+  font-size: 5vw;
+  color: #fff;
+  background-color: #65bb57;
+  letter-spacing: 3vw;
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+body {
+  font-family: -apple-system-font, "Helvetica Neue", sans-serif;
+  overflow: hidden;
+  //background-color: @body-bg-color;
+  background-repeat: repeat;
+  font-size: 12px;
+}
+
+.fs {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+  z-index: 99;
+  .body {
+    top: @header-height;
+    bottom: 0;
+  }
+}
+
+.header {
+  height: @header-height;
+  .main-back-gradient;
+  position: relative;
+  color: #fff;
+  font-size: 18px;
+  line-height: @header-height;
+  .icon-left-open {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0px 3vw;
+  }
+  .title {
+    text-align: center;
+  }
+  .right {
+    flex : 1;
+  }
+}
+
+.main-scroll-container {
+  position: absolute;
+  overflow: hidden;
+  top:  @header-height;
+  bottom: @tab-height;
+  left: 0;
+  right: 0;
+
+  .empty {
+      color: #ccc;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 120px;
+  }
+}
+
+
+.full-scroll-container {
+  position: absolute;
+  overflow: hidden;
+  top:  @header-height;
+  background: #f8f8f6;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  .empty {
+      color: #ccc;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 120px;
+  }
+}
+
+.section {
+  margin-top: 20px;
+  .section-title {
+    font-size: 18px;
+    padding: 1vw 3vw;
+    border-left: 3px solid rgba(47, 178, 74, 0.8);
+    color: rgba(47, 178, 74, 0.8);
+  }
+}
