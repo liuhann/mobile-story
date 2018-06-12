@@ -48,7 +48,7 @@
 
 <script>
     import PageHead from './components/header.vue';
-    import config from '../js/config';
+    import config from '../packages/common/config';
 
     export default {
         components: {

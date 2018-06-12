@@ -37,7 +37,7 @@
         <transition name="slide">
             <player v-if="playerFront" :story="story" :playing="playing" :percent="percent" @hide="hidePlayer" @toggle="togglePlay"></player>
         </transition>
-        
+
         <play-ball v-if="story!==null && playing && (!playerFront)" :playing="playing" :cover="coverImage" @clicked="ballClicked"></play-ball>
 
         <div class='media-player'>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-    import config from '../js/config';
+    import config from '../packages/common/config';
     import commonMixins from '../js/common';
     import TabBar from '../common/ui/tabbar.vue';
     import Player from './player.vue';
@@ -118,7 +118,7 @@
             coverImage: function() {
                 return this.getImageUrl(this.story.cover, 360);
             },
-            
+
             audioUrl: function() {
                 if (this.story && this.story.path) {
                     return config.CDN + '/' + this.story.path;
@@ -134,7 +134,7 @@
                 this.currentPath = item.path;
                 this.$router.replace(item.path);
                 console.log('tab clicked', item);
-            },            
+            },
         }
     }
 

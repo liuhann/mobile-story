@@ -11,6 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "async-boot": "^1.1.0",
     "axios": "^0.17.1",
     "delegates": "^1.0.0",
     "format-duration": "^1.0.0",

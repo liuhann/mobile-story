@@ -48,7 +48,7 @@
 </template>
 
 <script>
-    import config from '../../js/config';
+    import config from '../../packages/common/config';
     import IScroll from '../../common/iscroll';
 
     export default {
@@ -80,7 +80,7 @@
         },
 
         mounted: function() {
-            
+
         },
 
         methods: {
@@ -93,7 +93,7 @@
                 }
                 this.loading = true;
                 const loaded = await this.appDao.filterStory(this.filter, this.skip, this.limit);
-                
+
                 this.list = this.list.concat(loaded.list);
                 this.total = loaded.total;
                 this.skip = this.skip + loaded.limit;

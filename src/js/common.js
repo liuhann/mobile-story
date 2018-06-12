@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import config from './config';
+import config from '../packages/common/config';
 import IScroll from '../common/iscroll';
 
 const commonMixins =  {
