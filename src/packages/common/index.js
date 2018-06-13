@@ -1,3 +1,5 @@
-export default {
+import commonMixins from './story-mixins'
 
+export {
+  commonMixins
 }

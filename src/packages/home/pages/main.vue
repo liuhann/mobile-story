@@ -1,9 +1,7 @@
-<style lang="less" scoped>
-  @import "../style/variables";
-
+<style lang="less">
+  @header-height: 50px;
   .page-home {
     .home-title {
-      .main-back-gradient;
       position: absolute;
       width: 100%;
       top: 0;
@@ -103,7 +101,6 @@
   <div class="page-home">
     <div class="home-title">
       <div class="logo">
-        <img src="../common/res/mushroom.svg">
       </div>
       <div class="search-form-input">
         <span @click="searchStory">搜索故事</span>
@@ -118,7 +115,12 @@
     <div class="scroll-container" ref="scroll">
       <div class="scroll-content">
         <div class="slide-container">
-          <slider ref="slider" :slides="slides" :height="50" @open="openAlbum"></slider>
+          <swipe :autoplay="3000">
+            <swipe-item>1</swipe-item>
+            <swipe-item>2</swipe-item>
+            <swipe-item>3</swipe-item>
+            <swipe-item>4</swipe-item>
+          </swipe>
         </div>
 
         <div class="quick-entry clearfix">
@@ -145,80 +147,60 @@
 </template>
 
 <script>
-  import Slider from '../common/ui/slider.vue'
-  import commonMixins from '../js/common';
+import Swipe from 'vant/lib/swipe'
+import SwipeItem from 'vant/lib/swipe-item'
+import 'vant/lib/vant-css/swipe.css'
+import 'vant/lib/vant-css/cell-swipe.css'
 
-  export default {
-    components: {
-      Slider
-    },
-    mixins: [commonMixins],
+export default {
+  components: {
+    Swipe,
+    SwipeItem
+  },
 
-    data: function () {
-      const homeData = this.$root.homeData;
-      const slides = [];
+  data: function () {
+    return {
+      recommendLabels: [],
+      slides: [],
+      homeList: []
+    }
+  },
+
+  created: async function () {
+    await this.loadHomeData()
+  },
+  updated: async function () {
+
+  },
+
+  methods: {
+    async loadHomeData () {
+      debugger
+      const homeData = await this.ctx.appDao.listHome()
+      this.recommendLabels = homeData.recommendLabels
+      this.homeList = homeData.list
+
+      /* const slides = [];
       for (let album of homeData.homesAlbum) {
         slides.push({
           img: this.getImageUrl(album.cover, window.innerWidth),
           name: album.name,
         });
-      }
-      return {
-        recommendLabels: homeData.recommendLabels,
-        slides: slides,
-        homeList: homeData.list,
-      };
+      } */
     },
 
-    created: async function () {
-      /* const homeData = await this.appDao.listHome();
-
-       const slides = [];
-       for(let album of homeData.homesAlbum) {
-           slides.push({
-               img: this.getImageUrl(album.cover, window.innerWidth)
-           });
-       }
-       this.slides = slides;
-       this.homeList = homeData.list;*/
-      this.$nextTick(() => {
-        this.$refs.slider.ready();
-        this.scroll(this.$refs.scroll);
+    routeToUrl: function (path) {
+      this.$router.push({
+        path
       })
     },
-    updated: async function () {
 
+    openAlbum: function (data) {
+      this.$router.push('/album/' + data.name)
     },
-    /* beforeRouteEnter (to, from, next) {
-         // 在渲染该组件的对应路由被 confirm 前调用
-         // 不！能！获取组件实例 `this`
-         // 因为当守卫执行前，组件实例还没被创建
-         next();
-     },*/
-
-    beforeRouteUpdate(to, from, next) {
-      new IScroll(this.$refs.scroll, {
-        tap: true
-      });
-      // 在当前路由改变，但是该组件被复用时调用
-      // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
-      // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
-      // 可以访问组件实例 `this`
-    },
-
-    methods: {
-      routeToUrl: function (path) {
-        this.$router.push({
-          path
-        })
-      },
-
-      openAlbum: function (data) {
-        this.$router.push('/album/' + data.name);
-      },
-      searchStory: function () {
-        this.$router.push('/search');
-      },
+    searchStory: function () {
+      this.$router.push('/search')
     }
   }
+}
 </script>
