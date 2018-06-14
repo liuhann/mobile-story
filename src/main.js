@@ -14,10 +14,12 @@ const boot = new AsyncBoot({
     mount: '#app'
   },
   servers: config.servers,
-  systemModules: [],
   packages: [
     dao, main
-  ]
+  ],
+  started: [(ctx, next) => {
+    ctx.vueRouter.replace('/home')
+  }]
 })
 
 boot.startUp()
