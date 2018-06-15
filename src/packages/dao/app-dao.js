@@ -6,7 +6,7 @@ class AppDao {
 
   async listHome () {
     const result = await this.ctx.client.get(`/home?labels=今日推荐,凯迪克大奖,睡前故事,绘本故事`)
-    return result
+    return result.data
   }
 
   async listAllLabels () {

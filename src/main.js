@@ -5,8 +5,8 @@ import config from './config/config'
 import './style/variables.less'
 import 'vant/lib/vant-css/base.css'
 
-import dao from './packages/dao/index'
-import main from './packages/home/index'
+import dao from './packages/dao'
+import main from './packages/home'
 
 const boot = new AsyncBoot({
   vue: {

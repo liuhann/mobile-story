@@ -23,9 +23,13 @@ const commonMixins = {
       }, 300)
     },
 
+    getStoryCover (storyId) {
+      return `${this.imageHost}/story/thumb/${storyId}.png`
+    },
+
     getImageUrl: function (cover, width = 120) {
       if (cover) {
-        return this.imageHost + '/' + cover + '.png@w_' + width
+        return `${this.imageHost}/story/thumb/${cover}.png`
       } else {
         return this.imageHost + '/image/imgSure.jpg'
       }

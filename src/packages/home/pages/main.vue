@@ -136,7 +136,7 @@
           </div>
           <div class="clearfix">
             <div v-for="story in list.list" :key="story.img" class="home-story-item" @tap="playStory(story)">
-              <img :src="getImageUrl(story.cover, 90)">
+              <img :src="getStoryCover(story._id, 90)">
               <span class="story-name">{{story.title}}</span>
             </div>
           </div>
@@ -152,11 +152,14 @@ import SwipeItem from 'vant/lib/swipe-item'
 import 'vant/lib/vant-css/swipe.css'
 import 'vant/lib/vant-css/cell-swipe.css'
 
+import {commonMixins} from '../../common/index'
+
 export default {
   components: {
     Swipe,
     SwipeItem
   },
+  mixins: [commonMixins],
 
   data: function () {
     return {
@@ -175,9 +178,10 @@ export default {
 
   methods: {
     async loadHomeData () {
-      debugger
       const homeData = await this.ctx.appDao.listHome()
       this.recommendLabels = homeData.recommendLabels
+
+      debugger
       this.homeList = homeData.list
 
       /* const slides = [];
