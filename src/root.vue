@@ -2,12 +2,31 @@
   .main-app {
     overflow: hidden;
     width: 100%;
-    height: 100%
+    height: 100%;
+    .tab {
+      display: flex;
+      .item {
+        flex: 1;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+
+        span {
+          display: inline-block;
+          vertical-align: top;
+          margin-left: 5px;
+        }
+        &.active {
+          background: #00C1F3;
+          color: #fff;
+          border-radius: 10px 10px 0 0;
+        }
+      }
+    }
   }
   .main-screen {
     transition: transform .3s linear;
-    width: 100vw;
-    height: 100vh;
     &.slipped-left {
       transform: translateX(-100%);
     }
@@ -19,6 +38,12 @@
 
 <template>
   <div class="main-app">
+    <div class="tab">
+      <div class="item active">首页</div>
+      <div class="item">分类</div>
+      <div class="item">专辑</div>
+      <div class="item">搜索</div>
+    </div>
     <div class="main-screen">
       <router-view></router-view>
     </div>
@@ -36,9 +61,9 @@
 </template>
 
 <script>
-import {Player, PlayerBall} from '../packages/player/index'
-import {commonMixins} from '../packages/common/index'
-import playerMixin from './player'
+import {Player, PlayerBall} from './packages/player/index'
+import {commonMixins} from './packages/common/index'
+import playerMixin from './packages/player/player'
 
 export default {
   components: {
@@ -62,6 +87,7 @@ export default {
     coverImage () {
       return this.getImageUrl(this.story.cover, 360)
     },
+
     audioUrl () {
       if (this.story && this.story.path) {
         return this.imageHost + '/' + this.story.path

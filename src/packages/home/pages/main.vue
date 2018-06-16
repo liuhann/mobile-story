@@ -1,85 +1,54 @@
 <style lang="less">
   @header-height: 50px;
   .page-home {
-    .home-title {
-      position: absolute;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 10;
-      display: flex;
-      height: @header-height;
-      padding: 8px;
-      .logo {
-        img {
-          margin: .5vh;
-          width: 30px;
-          height: 30px;
-        }
-      }
-      .search-form-input {
-        width: 60%;
-        margin-left: 20px;
-        margin-right: 20px;
-        border-bottom: 1px solid #fff;
-        span {
-          font-size: 14px;
-          padding-left: 10px;
-          color: #fff;
-          display: inline-block;
-          width: 60%;
-          line-height: @header-height*2/3;
-          /* padding: 5px; */
+    background: #00C1F3;
 
-          //background-color: #eee;
-        }
-      }
-      .history {
-        font-size: 20px;
-        color: #fff;
-        text-align: right;
-        position: absolute;
-        top: 9px;
-        right: 15px;
+    .slide-container {
+      padding: 16px;
+      .van-swipe {
+        border: 3px solid #f8f8f6;
+        box-shadow: 0 8px 6px -6px black;
+        border-radius: 20px;
+        box-sizing: content-box;
+        height: 179px;
       }
     }
   }
-
-  .scroll-container {
-    position: absolute;
-    overflow: hidden;
-    top: 0px;
-    bottom: 60px;
-    left: 0;
-    right: 0;
-  }
-
   .quick-entry {
+    display: flex;
+    margin-bottom: 10px;
     .entry {
-      float: left;
-      width: 20vw;
-      height: 25vw;
-      padding: 4vw 3vw;
+      flex: 1;
+      box-sizing: border-box;
+      color: #fff;
+      span {
+        text-align: center;
+        width: 100%;
+        display: block;
+        svg {
+          width: 70%;
+        }
+      }
       .name {
-        font-size: 3vw;
+        font-size: 18px;
         text-align: center;
       }
     }
   }
 
   .titled-block {
-    border-top: 1px solid #e4e4e4;
-    background-color: #fff;
-    margin-top: 20px;
     .title {
-      font-size: 18px;
-      padding: 1vw 3vw;
-      border-left: 3px solid #ddd;
-      color: #666;
+      font-size: 20px;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+      padding: 10px 20px;
     }
 
     .clearfix {
       padding: 2vw 2vw;
+      display: flex;
+      flex-wrap: wrap;
       .home-story-item {
         float: left;
         width: 32vw;
@@ -87,9 +56,12 @@
         img {
           margin: 2vw 2vw 0vw 2vw;
           width: 28vw;
+          border: 3px solid #fff;
+          border-radius: 20px;
+          box-shadow: 0 8px 6px -6px black;
         }
         span.story-name {
-          display: block;
+          display: none;
           text-align: center;
         }
       }
@@ -99,47 +71,29 @@
 
 <template>
   <div class="page-home">
-    <div class="home-title">
-      <div class="logo">
-      </div>
-      <div class="search-form-input">
-        <span @click="searchStory">搜索故事</span>
-      </div>
-      <div class="history">
-        <router-link to="/history">
-          <i class="icon-history" style="color: #fff"></i>
-        </router-link>
+    <div class="slide-container">
+      <swipe :autoplay="3000">
+        <swipe-item v-for="album in homeAlbums">
+          <img :src="getStoryCover(album.cover, 480, 180)">
+        </swipe-item>
+      </swipe>
+    </div>
+
+    <div class="quick-entry clearfix">
+      <div class="entry" v-for="recommendLabel of recommendLabels" @tap="routeToUrl(recommendLabel.path)">
+        <span v-html="recommendLabel.svg"></span>
+        <div class="name">{{recommendLabel.label}}</div>
       </div>
     </div>
 
-    <div class="scroll-container" ref="scroll">
-      <div class="scroll-content">
-        <div class="slide-container">
-          <swipe :autoplay="3000">
-            <swipe-item>1</swipe-item>
-            <swipe-item>2</swipe-item>
-            <swipe-item>3</swipe-item>
-            <swipe-item>4</swipe-item>
-          </swipe>
-        </div>
-
-        <div class="quick-entry clearfix">
-          <div class="entry" v-for="recommendLabel of recommendLabels" @tap="routeToUrl(recommendLabel.path)">
-            <span v-html="recommendLabel.svg"></span>
-            <div class="name">{{recommendLabel.label}}</div>
-          </div>
-        </div>
-
-        <div class="picture-picked titled-block" v-for="list in homeList" :key="list.label">
-          <div class="title">
-            {{list.label}}
-          </div>
-          <div class="clearfix">
-            <div v-for="story in list.list" :key="story.img" class="home-story-item" @tap="playStory(story)">
-              <img :src="getStoryCover(story._id, 90)">
-              <span class="story-name">{{story.title}}</span>
-            </div>
-          </div>
+    <div class="picture-picked titled-block" v-for="list in homeList" :key="list.label">
+      <div class="title">
+        {{list.label}}
+      </div>
+      <div class="clearfix">
+        <div v-for="story in list.list" :key="story.img" class="home-story-item" @tap="playStory(story)">
+          <img :src="getStoryCover(story.cover, 120, 120)">
+          <span class="story-name">{{story.title}}</span>
         </div>
       </div>
     </div>
@@ -165,7 +119,8 @@ export default {
     return {
       recommendLabels: [],
       slides: [],
-      homeList: []
+      homeList: [],
+      homeAlbums: []
     }
   },
 
@@ -180,8 +135,7 @@ export default {
     async loadHomeData () {
       const homeData = await this.ctx.appDao.listHome()
       this.recommendLabels = homeData.recommendLabels
-
-      debugger
+      this.homeAlbums = homeData.homesAlbum
       this.homeList = homeData.list
 
       /* const slides = [];

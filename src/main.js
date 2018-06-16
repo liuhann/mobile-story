@@ -1,5 +1,5 @@
 import AsyncBoot from 'async-boot'
-import AppRoot from './components/root.vue'
+import AppRoot from './root.vue'
 import config from './config/config'
 
 import './style/variables.less'
