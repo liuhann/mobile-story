@@ -1,5 +1,4 @@
 import AsyncBoot from 'async-boot'
-import AppRoot from './root.vue'
 import config from './config/config'
 
 import './style/variables.less'
@@ -10,7 +9,7 @@ import main from './packages/home'
 
 const boot = new AsyncBoot({
   vue: {
-    rootApp: AppRoot,
+    rootApp: {},
     mount: '#app'
   },
   servers: config.servers,
@@ -18,7 +17,7 @@ const boot = new AsyncBoot({
     dao, main
   ],
   started: [(ctx, next) => {
-    ctx.vueRouter.replace('/home')
+    ctx.vueRouter.replace('/generation')
   }]
 })
 
