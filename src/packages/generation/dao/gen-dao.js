@@ -5,6 +5,6 @@ export default class GenDAO {
 
   async someMoreStories () {
     const result = await this.ctx.client.get('/story/samples')
-    return result
+    return result.data
   }
 }

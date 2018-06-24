@@ -1,8 +1,10 @@
 <template>
 <div class="horizontal-swipper">
-    <swiper class="swiper" :options="swiperOption">
+    <swiper class="swiper" :options="swiperOption" ref="swiper">
         <swiper-slide class="slide" v-for="(story, index) in stories" :key="index">
-            {{index}}
+          {{index}}
+          {{story.cover}}
+          <img v-if="story.cover" :src="getStoryCover(story.cover)">
         </swiper-slide>
     </swiper>
 </div>
@@ -18,7 +20,7 @@ export default {
     swiperSlide
   },
   props: {
-
+    
   },
   data () {
     return {
@@ -28,9 +30,20 @@ export default {
       stories: [],
       currentIndex: 0
     }
-  }, 
+  },
+  computed: {
+    imageHost () {
+      return this.ctx.bootOpts.servers.default.baseURL
+    }
+  },
   async created () {
     this.stories = await this.ctx.gendao.someMoreStories()
+    debugger
+  },
+  methods: {
+    getStoryCover (cover) {
+      return `${this.imageHost}/story/cover/${window.outerWidth-40}/${window.outerWidth-40}/${cover}.png`
+    },
   }
 }
 </script>
