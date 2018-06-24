@@ -6,5 +6,8 @@ export default {
   routes: [{
     path: '/generation',
     component: Generation
-  }]
+  }],
+
+  async loaded (ctx) {
+  }
 }

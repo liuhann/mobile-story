@@ -8,11 +8,15 @@
 <script>
 import SwippedStories from './swipped-stories'
 import StoryPlayer from './story-player'
+import GenDAO from '../dao/gen-dao'
 export default {
   name: 'generation',
   components: {
     SwippedStories,
     StoryPlayer
+  },
+  created () {
+    this.ctx.gendao = new GenDAO(this.ctx)
   }
 }
 </script>
