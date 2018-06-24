@@ -20,7 +20,6 @@ export default {
     swiperSlide
   },
   props: {
-    
   },
   data () {
     return {
@@ -42,8 +41,8 @@ export default {
   },
   methods: {
     getStoryCover (cover) {
-      return `${this.imageHost}/story/cover/${window.outerWidth-40}/${window.outerWidth-40}/${cover}.png`
-    },
+      return `${this.imageHost}/story/cover/${window.outerWidth - 40}/${window.outerWidth - 40}/${cover}.png`
+    }
   }
 }
 </script>
