@@ -2,6 +2,7 @@ import AsyncBoot from 'async-boot'
 import config from './config/config'
 
 import './style/variables.less'
+import './fontello/css/fontello.css'
 import 'vant/lib/vant-css/base.css'
 
 import RouterView from './routerview'

@@ -3,6 +3,15 @@
     <swiper class="swiper" :options="swiperOption" ref="swiper" @slideChange="slideChange($event)">
         <swiper-slide class="slide" v-for="(story, index) in stories" :key="index">
           <img class="cover" v-if="story.cover" :src="getStoryCover(story.cover)" :style="imageStyle">
+          <div class="story-intro">
+              <div class="title">
+                  {{story.title}}
+              </div>
+              <div class="short">
+                  {{story.short}}
+              </div>
+          </div>
+          <div class="bg-mask"></div>
           <div class="background" :style="{
             backgroundImage: getStoryCoverBg(story.cover)
           }"></div>
@@ -83,16 +92,39 @@ export default {
             width: 90vw;
             height: 90vw;
             left: 5vw;
-            top: 16vh;
+            top: 75px;
+            z-index: 11;
         }
         .background {
             position: absolute;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: 1;
             background-size: cover;
-            -webkit-animation: filter-animation 5s infinite;
-            -webkit-filter: blur(8px);
+            -webkit-filter: blur(5px);
+        }
+        .bg-mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: .5;
+            z-index: 4;
+            background-color: #000;
+        }
+        .story-intro {
+            position: absolute;
+            z-index: 11;
+            font-size: 26px;
+            padding: 10px;
+            color: #fff;
+            bottom: 15vh;
+            height: 20vh;
+            overflow: hidden;
+            .short {
+                font-size: 20px;
+            }
         }
     }
 }

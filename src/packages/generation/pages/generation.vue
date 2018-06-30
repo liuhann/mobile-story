@@ -1,5 +1,6 @@
 <template>
     <div class="root">
+        <i class="icon-search"></i>
         <swipped-stories></swipped-stories>
         <story-player></story-player>
     </div>
@@ -24,5 +25,13 @@ export default {
 <style lang="less">
 .root {
     position: relative;
+    .icon-search {
+        color: #fff;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        z-index: 101;
+        font-size: 28px;
+    }
 }
 </style>
