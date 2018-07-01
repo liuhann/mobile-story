@@ -2,7 +2,7 @@
 <div class="horizontal-swipper">
     <swiper class="swiper" :options="swiperOption" ref="swiper" @slideChange="slideChange($event)">
         <swiper-slide class="slide" v-for="(story, index) in stories" :key="index">
-          <img class="cover" v-if="story.cover" :src="getStoryCover(story.cover)" :style="imageStyle">
+          <img @click="chooseStory(story)" class="cover" v-if="story.cover" :src="getStoryCover(story.cover)" :style="imageStyle">
           <div class="story-intro">
               <div class="title">
                   {{story.title}}
@@ -70,6 +70,9 @@ export default {
     async fetchMore () {
       let more = await this.ctx.gendao.someMoreStories()
       this.stories = [...this.stories, ...more]
+    },
+    chooseStory (story) {
+    	this.$emit('choose-story', story)
     }
   }
 }

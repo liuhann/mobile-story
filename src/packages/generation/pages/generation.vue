@@ -1,8 +1,8 @@
 <template>
     <div class="root">
         <i class="icon-search"></i>
-        <swipped-stories></swipped-stories>
-        <story-player></story-player>
+        <swipped-stories @choose-story="chooseStory"></swipped-stories>
+        <story-player :story="story"></story-player>
     </div>
 </template>
 
@@ -16,8 +16,18 @@ export default {
     SwippedStories,
     StoryPlayer
   },
+  data () {
+    return {
+      story: null
+    }
+  },
   created () {
     this.ctx.gendao = new GenDAO(this.ctx)
+  },
+  methods: {
+    chooseStory (story) {
+      this.story = story
+    }
   }
 }
 </script>
@@ -25,6 +35,10 @@ export default {
 <style lang="less">
 .root {
     position: relative;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
     .icon-search {
         color: #fff;
         position: absolute;
