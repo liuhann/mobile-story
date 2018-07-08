@@ -91,12 +91,13 @@ export default {
     .swiper-slide {
         position: relative;
         img.cover {
-            position: absolute;
-            width: 90vw;
-            height: 90vw;
-            left: 5vw;
-            top: 75px;
-            z-index: 11;
+          position: absolute;
+          width: 70vw;
+          height: 70vw;
+          left: 15vw;
+          top: 90px;
+          z-index: 11;
+          border: 3px solid rgba(255,255,255,.9);
         }
         .background {
             position: absolute;
@@ -117,16 +118,20 @@ export default {
             background-color: #000;
         }
         .story-intro {
-            position: absolute;
-            z-index: 11;
-            font-size: 26px;
-            padding: 10px;
-            color: #fff;
-            bottom: 15vh;
-            height: 20vh;
-            overflow: hidden;
+          position: absolute;
+          z-index: 11;
+          font-size: 22px;
+          line-height: 44px;
+          font-weight: bold;
+          padding: 10px;
+          color: #fff;
+          bottom: 15vh;
+          height: 118px;
+          overflow: hidden;
             .short {
-                font-size: 20px;
+              line-height: 28px;
+              font-weight: normal;
+              font-size: 20px;
             }
         }
     }

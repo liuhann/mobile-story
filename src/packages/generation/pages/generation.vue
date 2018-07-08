@@ -40,12 +40,12 @@ export default {
     width: 100vw;
     height: 100vh;
     .icon-search {
-        color: #fff;
+        color: rgba(255,255,255,.85);
         position: absolute;
-        right: 20px;
+        right: 10px;
         top: 10px;
         z-index: 101;
-        font-size: 28px;
+        font-size: 32px;
     }
 }
 </style>
