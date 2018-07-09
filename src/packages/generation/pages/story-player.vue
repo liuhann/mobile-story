@@ -49,10 +49,10 @@ export default {
       return this.ctx.bootOpts.servers.default.baseURL
     },
     storyUrl () {
-    	if (this.story) {
+      if (this.story) {
         return this.ctx.bootOpts.servers.file.baseURL + '/story/mp3/' + this.story._id
       } else {
-    		return null
+        return null
       }
     },
 
@@ -98,6 +98,9 @@ export default {
 </script>
 
 <style lang="less">
+.media-player {
+  display: none;
+}
 .player-panel {
     display: flex;
     background: rgba(0,0,0, .6);
@@ -107,9 +110,6 @@ export default {
     bottom: 0;
     left: 0;
     width: 100%;
-    .media-player {
-        display: none;
-    }
     img.cover {
         width: 10vh;
         height: 10vh;

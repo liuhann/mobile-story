@@ -120,18 +120,18 @@ export default {
         .story-intro {
           position: absolute;
           z-index: 11;
-          font-size: 22px;
-          line-height: 44px;
+          font-size: 4.2vw;
+          line-height: 9vw;
           font-weight: bold;
           padding: 10px;
           color: #fff;
           bottom: 15vh;
-          height: 118px;
+          height: 21.5vw;
           overflow: hidden;
             .short {
-              line-height: 28px;
+              line-height: 5vw;
               font-weight: normal;
-              font-size: 20px;
+              font-size: 3.5vw;
             }
         }
     }

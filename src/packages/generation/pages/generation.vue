@@ -45,7 +45,7 @@ export default {
         right: 10px;
         top: 10px;
         z-index: 101;
-        font-size: 32px;
+        font-size: 6vw;
     }
 }
 </style>
