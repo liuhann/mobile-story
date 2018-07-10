@@ -92,10 +92,10 @@ export default {
         position: relative;
         img.cover {
           position: absolute;
-          width: 70vw;
-          height: 70vw;
-          left: 15vw;
-          top: 90px;
+          width: 66vw;
+          height: 66vw;
+          left: 17vw;
+          top: 20%;
           z-index: 11;
           border: 3px solid rgba(255,255,255,.9);
         }
@@ -126,12 +126,17 @@ export default {
           padding: 10px;
           color: #fff;
           bottom: 15vh;
-          height: 21.5vw;
+          height: 23.5vw;
           overflow: hidden;
             .short {
               line-height: 5vw;
               font-weight: normal;
               font-size: 3.5vw;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
             }
         }
     }

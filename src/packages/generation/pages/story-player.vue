@@ -11,8 +11,8 @@
             </div>
             <div class="control" @click="togglePlay">
                 <van-loading v-if="loading"></van-loading>
-                <i class="icon-pause" v-if="playing && !loading"></i>
-                <i class="icon-play" v-if="!playing && !loading"></i>
+                <van-icon name="pause" v-if="playing && !loading"></van-icon>
+                <van-icon name="play" v-if="!playing && !loading"></van-icon>
             </div>
         </div>
         </transition>
@@ -26,6 +26,8 @@
 <script>
 import Slider from 'vant/lib/slider'
 import Loading from 'vant/lib/loading'
+import Icon from 'vant/lib/icon'
+import 'vant/lib/vant-css/icon.css'
 
 import 'vant/lib/vant-css/badge.css'
 import 'vant/lib/vant-css/slider.css'
@@ -35,7 +37,8 @@ export default {
   name: 'story-player',
   components: {
     'vue-slider': Slider,
-    'van-loading': Loading
+    'van-loading': Loading,
+	  'van-icon': Icon
   },
   mixins: [
     storyMixins
@@ -143,12 +146,12 @@ export default {
             font-size: 4vw;
         }
     }
-    .control {
+    .van-icon-play, .van-icon-pause {
         flex: 1;
         text-align: center;
         color: #fff;
         line-height: 14vh;
-        font-size: 5.5vw;
+        font-size: 8.5vw;
     }
 }
 
